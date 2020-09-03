@@ -1,0 +1,88 @@
+<app-header [titulo]="categoria.nombre" mode="md"></app-header>
+
+<ion-content class="animated fadeIn">
+  <!-- <ion-searchbar showCancelButton="focus" [(ngModel)]="searchParam" (ngModelChange)="search(searchParam)"
+    placeholder="Buscar"></ion-searchbar>
+  <br> -->
+  <section>
+    <!-- Productos lista -->
+
+    <div class="container" *ngIf="searchData.length < 0 || searchParam == ''">
+      <div *ngIf="productS.data">
+        <div class="row">
+          <div class="col-6" id="customCard" *ngFor="let producto of productS.data"
+            (click)="selecccionar_producto(producto)">
+            <ion-card>
+
+              <ion-card-content>
+                <div class="customTitle">
+                  <h3><strong>{{producto.nombre}}</strong></h3>
+                  <!-- Start of validation -->
+                  <!-- Status of stock of the products -->
+                  <ion-button style="width: 90px; height: 25px;"
+                    *ngIf="( producto.existencia > 0 && producto.existencia != null); else notStock"
+                    color="success">
+                    <p style="color: white;">Disponible</p>
+                  </ion-button>
+                  <!-- ELSE -->
+                  <ng-template #notStock>
+                    <ion-button style="width: 70px; height: 25px;" color="danger">
+                      <p style="color: white;">Agotado</p>
+                    </ion-button>
+                  </ng-template>
+                  <!-- End of validation -->
+
+                </div>
+              </ion-card-content>
+              <!-- Images of the products -->
+              <div class="customImage">
+                <ion-img [src]="producto.imagenurl | images: 'productos'" onerror="this.src=''"></ion-img>
+              </div>
+
+            </ion-card>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Cuando reliza una buqueda y encuentra -->
+    <div class="container" *ngIf="searchData.length > 0 && searchParam != ''">
+      <div *ngIf="searchData">
+        <div class="row">
+          <div class="col-6" id="customCard" *ngFor="let producto of searchData"
+            (click)="selecccionar_producto(producto)">
+            <ion-card>
+              <ion-card-content>
+                <div class="customTitle">
+                  <h2><strong>{{producto.nombre  }}</strong></h2>
+                </div>
+              </ion-card-content>
+              <!-- Images of the products -->
+              <div class="customImage">
+                <ion-img [src]="producto.imagenurl | images: 'productos'" onerror="this.src=''"></ion-img>
+              </div>
+            </ion-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- Cuando reliza una buqueda y no encuentra -->
+<div *ngIf="searchData.length <= 0 && searchParam != '' || !productS.data">
+      <div class="container">
+        <div class="empty">
+          <ion-icon style="width: 100px; height: 100px;" name="nutrition-outline"></ion-icon>
+          <h1>No se encontraron resultados para la búsqueda.</h1>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</ion-content>
+
+
+<!-- Footer with tabs of the navigation-->
+<ion-footer mode="md">
+  <ion-toolbar>
+  </ion-toolbar>
+</ion-footer>

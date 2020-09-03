@@ -1,0 +1,55 @@
+// Style only when the cart is empty
+
+agm-map {
+    height: 200px;
+  }
+  
+  ion-card {
+    margin-bottom: 10px;
+  }  
+    
+  
+  h3 {
+    font-size: 30;
+    font-weight: lighter;
+  }
+    a {
+      color: darkblue;
+    }
+  
+    #map {
+      width: 100%;
+      height: 300px;
+      transition: opacity 150ms ease-in;
+      display: block;
+    }
+    ion-badge{
+      padding: 10px;
+    }
+  
+  
+    .customImage {
+      height: 100px;
+      width: 100px;
+      align-items: center;
+  }
+  
+  #customText {
+      align-items: center;
+  }
+  
+  .description {
+      margin-left: 10px;
+      color: #000000;
+      em {
+          color: #ffa500;
+      }
+  }
+  
+  // Style only when the cart is empty
+  .empty {
+    text-align: center;
+    margin-top: 50%;
+  }
+  
+  

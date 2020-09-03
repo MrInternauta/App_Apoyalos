@@ -1,0 +1,46 @@
+#center {
+    text-align: center;
+    align-content: center;
+}
+.customHR {
+    border-bottom: 1px solid #ccc;
+}
+
+.customHrVertical {
+    border-left: 1px solid #ccc;
+}
+
+.customButtonQuantity {
+    width: auto;
+    height: 40px;
+}
+
+.customInputQuantity {
+    font-size: 20px;
+    text-decoration-color: #000000;
+    color: #000000;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+}
+
+.customTotalOfProduct {
+    text-align: center;
+    align-content: center;
+}
+
+.customButtonAddCart {
+    height: 40px;
+}
+
+.customSelect {
+    width: 400px;
+    height: 30px;
+    text-align-last: center;
+    max-width: 100% !important;
+    --padding-top: 0px;
+    --padding-end: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0px;
+}

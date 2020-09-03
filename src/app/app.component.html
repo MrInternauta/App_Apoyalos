@@ -1,0 +1,53 @@
+<ion-app>
+
+  <!-- Element of the tabs for navigation -->
+  <ion-router-outlet></ion-router-outlet>
+
+  <ion-menu side="start" menuId="first" contentId="main" *ngIf="user.EstaLogueado()" auto-hide="true" >
+    <ion-menu-toggle autoHide="true">
+    <ion-header class="animated fadeIn" class="ion-no-border" class="ion-text-center" >
+        <img src="../assets/theme/images/logo_with_r.png" id="homeIcon" width="50%" alt="">
+      <!-- Profile image -->
+      <div class="container" (click)="changePage('/profile')">
+        <ion-avatar class="customImageProfile" *ngIf="subir.linkPicture != ''">
+          <ion-img [src]="subir.getLinkPicture() | images: 'perfil'"></ion-img>
+        </ion-avatar>
+        <ion-avatar class="customImageProfile" *ngIf="subir.linkPicture == ''">
+          <ion-img [src]="user.usuario.imagenurl | images: 'perfil'" alt="" srcset=""></ion-img>
+        </ion-avatar>
+
+        <ion-button expand="full"  fill="outline">
+          <ion-icon color="light" class="icon-stars" name="star"></ion-icon>
+          <ion-icon color="light" class="icon-stars" name="star" ></ion-icon>
+          <ion-icon color="light" class="icon-stars" name="star"></ion-icon>
+
+        </ion-button>
+
+        <!-- username -->
+        <div class="customUserName">
+          <ion-label>
+            <h1><strong>{{ user.usuario.nombre }} {{user.usuario.apellidopat}}
+              </strong></h1>
+          </ion-label>
+          <div class="customHR"></div>
+
+        </div>
+      </div>
+
+    </ion-header>
+    <ion-content color="primary" > 
+      <ion-list class="animated fadeIn">
+          <ion-item color="primary" *ngFor="let menu of optionMenu" (click)="changePage(menu.url)">
+            <ion-label class="center text-center">{{menu.name}}</ion-label>
+          </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu-toggle>
+  <ion-footer mode="md"  class="ion-text-center" color="success">
+    <ion-button color="light" fill="outline" (click)="salir()" class="text-center center">
+      <ion-label><strong>Cerrar sesión</strong></ion-label>
+    </ion-button>
+  </ion-footer>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

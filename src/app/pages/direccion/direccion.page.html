@@ -1,0 +1,48 @@
+<!-- Custom backbutton for modal of the checkout -->
+<ion-header mode="md">
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ 'Dirección'  }}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="guardar()">
+        <ion-icon slot="icon-only" name="save"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="animated fadeIn" mode="md">
+  <ion-toolbar>
+    <ion-searchbar slot="start" [(ngModel)]="autocomplete.input" placeholder="Buscar un lugar"
+      (ionClear)="ClearAutocomplete()"></ion-searchbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="UpdateSearchResults()">
+        <ion-icon slot="icon-only" name="search"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+
+  <ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="SelectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="getCurrentLocation()" ion-fab color="success">
+      <ion-icon name="locate"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <div class="map-wrapper" style="height: 100%;" *ngIf="direccion">
+    <agm-map style="height: 100%;" *ngIf="direccion.latitud && direccion.longitud" [latitude]="direccion.latitud"
+      [longitude]="direccion.longitud" [zoom]="15" [disableDefaultUI]="false" [zoomControl]="false"
+      (mapClick)="clickMap($event)">
+      <agm-marker [latitude]="direccion.latitud" [longitude]="direccion.longitud">
+      </agm-marker>
+    </agm-map>
+  </div>
+</ion-content>

@@ -1,0 +1,32 @@
+<ion-header *ngIf="!subMenu" translucent class="ion-no-border">
+    <ion-toolbar >
+        <ion-buttons slot="start" (click)="openFirst()">
+            <ion-button  expand="full"  >
+                <ion-icon name="sinicono" auto-hide></ion-icon>
+            </ion-button>
+            <!-- <ion-menu-button auto-hide></ion-menu-button> -->
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<!-- Title of the views -->
+<ion-header *ngIf="subMenu  && !modal">
+    <ion-toolbar color="success">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <ion-title *ngIf="titulo">{{ titulo}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<!-- Custom backbutton for modal of the checkout -->
+<ion-header *ngIf="subMenu && modal">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="dismiss()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title *ngIf="titulo">{{ titulo }}</ion-title>
+    </ion-toolbar>
+</ion-header>

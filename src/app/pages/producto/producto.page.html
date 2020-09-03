@@ -1,0 +1,260 @@
+<app-header *ngIf="productoService.producto" titulo="{{ productoService.producto.producto.nombre }}" subMenu="true"
+  mode="md">
+</app-header>
+
+<ion-content class="animated fadeIn">
+  <!-- line break -->
+  <br>
+  <section>
+    <div class="container">
+
+      <!-- Image of the product (Imagen del producto) -->
+      <div *ngIf="productoService.producto" style="align-content: center; text-align: center;">
+        <img [src]="productoService.producto.producto.imagenurl | images" alt="">
+      </div>
+
+      <br>
+
+      <!-- Information of the product (Información del producto) -->
+      <ion-card>
+        <ion-card-content>
+          <div *ngIf="productoService.producto">
+            <div id="center">
+              <h1>{{productoService.producto.producto.nombre }}</h1>
+
+              <!-- Start of validation -->
+              <!-- Status of stock of the products -->
+              <ion-button style="width: 90px; height: 25px; margin-bottom: 7px;"
+                *ngIf="productoService.producto.producto.usaexistencia == false || productoService.producto.producto.existencia == null || (productoService.producto.producto.usaexistencia == true && productoService.producto.producto.existencia > 0 && productoService.producto.producto.existencia != null); else notStock"
+                color="success">
+                <p style="color: white;">Disponible</p>
+              </ion-button>
+              <!-- ELSE -->
+              <ng-template #notStock>
+                <ion-button style="width: 70px; height: 25px; margin-bottom: 7px;" color="danger">
+                  <p style="color: white;">Agotado</p>
+                </ion-button>
+              </ng-template>
+              <!-- End of validation -->
+            </div>
+            <div class="customHR"></div>
+            <div id="center">
+              <div *ngIf="productoService.producto.producto.codigo != '' && productoService.producto.producto.codigo">
+                <h4>#{{productoService.producto.producto.codigo}}</h4>
+              </div>
+              <p>{{productoService.producto.producto.descripcion }}</p>
+            </div>
+
+            <div id="center" class="price">
+              <span>{{productoService.producto.producto.precio | precioUnidad : 1 : productoService.umedidaM : productoService.producto.producto.unidadesMedida | currency:'MXN':'symbol-narrow' | lowercase }}</span>
+            </div>
+
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <br>
+
+      <!-- Amount of the product -->
+      <ion-card>
+        <ion-card-content>
+          <div *ngIf="productoService.producto" id="center">
+            <div>
+              <h2><strong>Cantidad</strong></h2>
+              <br>
+              <div class="row">
+
+                <div class="col">
+                  <ion-button (click)="productoService.cantidadChange(-1, productoService.umedidaM, 1)"
+                    class="customButtonQuantity" id="minus-btn" color="success">
+                    <ion-icon name="remove-sharp"></ion-icon>
+                  </ion-button>
+                </div>
+
+                <div class="col">
+                  <ion-input type="number" [(ngModel)]="productoService.cantidad" id="qty_input"
+                    class="customInputQuantity" min="1"
+                    (ionInput)="productoService.cantidadChange($event, productoService.umedidaM, 2)"></ion-input>
+                </div>
+
+                <div class="col">
+                  <ion-button (click)="productoService.cantidadChange(1, productoService.umedidaM, 1)"
+                    class="customButtonQuantity" id="plus-btn" color="success">
+                    <ion-icon name="add-sharp"></ion-icon>
+                  </ion-button>
+                </div>
+
+              </div>
+            </div>
+
+            <br>
+
+            <!-- Unit of measurement of the product -->
+            <h2><strong>Unidad de medida</strong></h2>
+            <div>
+              <ion-item *ngIf="productoService.producto.producto.unidadesMedida">
+                <ion-select class="customSelect" [(ngModel)]="productoService.umedidaM"
+                  [selectedText]="productoService.umedidaM" cancelText="Cancelar" okText="Seleccionar"
+                  (ionChange)="productoService.updateUnitOfMeasurement(productoService.umedidaM)">
+                  <ion-select-option value="{{unidades.nombre}}"
+                    *ngFor="let unidades of productoService.producto.producto.unidadesMedida">
+                    {{unidades.nombre}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- line break -->
+      <br>
+
+      <div *ngIf="productoService.producto">
+        <div *ngIf="productoService.producto.producto.clasificacion.length > 0">
+          <ion-card>
+            <ion-card-content>
+              <div>
+                <div>
+                  <h2 id="center"><strong>Clasificaciones</strong></h2>
+                  <p id="center"><ins>(Por favor selecciona una opción)</ins></p>
+
+                  <!-- line break -->
+                  <br>
+
+                  <!-- Clasificaciones del producto (dropdown) -->
+                  <div class="row">
+                    <ion-list class="col">
+                      <!-- Validamos si hay clasificaciones seleccionadas por el usuario -->
+                      <div *ngIf="productoService.producto.clasificacion">
+                        <div *ngFor="let clasificacion of productoService.producto.producto.clasificacion">
+                          <ion-item *ngIf="clasificacion.opciones">
+                            <ion-label>{{((clasificacion | capitalizeNLimitText: clasificacion.id) | async)   }}
+                            </ion-label>
+                            <ion-select cancelText="Cancelar" value="selected" okText="Ok" id="{{clasificacion.nombre}}"
+                              [(ngModel)]="clasificacion.nombre"
+                              (ionChange)="productoService.updateClassification(clasificacion, clasificacion.nombre)">
+                              <ion-select-option *ngFor="let opciones of clasificacion.opciones"
+                                selected="opciones.selected" value="{{opciones.id}}">{{opciones.nombre}}
+                              </ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                        </div>
+                      </div>
+
+                      <!-- Validamos si no hay clasificaciones seleccionadas por el usuario -->
+                      <div *ngIf="!productoService.producto.clasificacion">
+                        <div *ngFor="let clasificacion of productoService.producto.producto.clasificacion">
+                          <ion-item *ngIf="clasificacion.opciones">
+                            <ion-label>{{clasificacion |capitalizeNLimitText | async}}</ion-label>
+                            <ion-select cancelText="Cancelar" value="selected" okText="Ok" id="{{clasificacion.nombre}}"
+                              [(ngModel)]="clasificacion.nombre"
+                              (ionChange)="productoService.updateClassification(clasificacion, clasificacion.nombre)">
+                              <ion-select-option *ngFor="let opciones of clasificacion.opciones"
+                                selected="opciones.selected" value="{{opciones.id}}">{{opciones.nombre}}
+                              </ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                        </div>
+                      </div>
+
+                    </ion-list>
+                  </div>
+
+                </div>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+
+      <!-- line break -->
+      <br>
+
+      <ion-card>
+        <ion-card-content>
+          <div *ngIf="productoService.producto" id="center">
+            <div>
+              <h2><strong>Comentario</strong></h2>
+              <ion-input type="text" placeholder="Escribe tu comentario aqui!" [(ngModel)]="productoService.comentario">
+              </ion-input>
+            </div>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- line break -->
+      <br>
+
+    </div>
+  </section>
+
+  <!-- Add to favorite -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="productoService.producto">
+    <ion-fab-button *ngIf="productoService.producto.producto.isFavorit" color="warning"
+      (click)="productoService.addFavorit(productoService.producto.producto, true)">
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button *ngIf="!productoService.producto.producto.isFavorit" color="light"
+      (click)="productoService.addFavorit(productoService.producto.producto, false)">
+      <ion-icon name="heart-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
+
+<!-- Footer without a border -->
+<ion-footer class="animated fadeIn" mode="md">
+  <ion-toolbar>
+    <div *ngIf="productoService.producto">
+      <div class="customTotalOfProduct">
+
+        <div class="row">
+          <div class="col">
+            <h6>Cantidad</h6>
+            <div class="customHR"></div>
+            <div class="col">
+              <h6>{{productoService.cantidad}}</h6>
+            </div>
+          </div>
+
+          <div class="customHrVertical"></div>
+
+          <div class="col">
+            <h6>Unidad</h6>
+            <div class="customHR"></div>
+            <h6 *ngIf="productoService.umedidaM">{{productoService.umedidaM}}</h6>
+            <h6 *ngIf="!productoService.umedidaM">{{productoService.umedidaDefault}}</h6>
+          </div>
+
+          <div class="customHrVertical"></div>
+
+          <div class="col">
+            <h6>Total</h6>
+            <div class="customHR"></div>
+            <h6 *ngIf="productoService.precio">{{productoService.precio | currency:'MXN':'symbol-narrow' | lowercase}}
+            </h6>
+            <h6 *ngIf="!productoService.precio">0.0</h6>
+          </div>
+
+        </div>
+      </div>
+      <!-- Start of validation -->
+      <!-- Button of the Add to cart -->
+      <ion-button class="customButtonAddCart"
+        *ngIf="productoService.producto.producto.usaexistencia == false || productoService.producto.producto.usaexistencia == null || (productoService.producto.producto.usaexistencia == true && productoService.producto.producto.existencia > 0 && productoService.producto.producto.existencia != null); else buttonWithNotStock"
+        (click)="addCart(productoService.producto, productoService.umedidaM, productoService.misClasificaciones, productoService.cantidad, productoService.comentario)"
+        expand="full" color="success" mode="md">
+        Agregar al carrito
+      </ion-button>
+      <!-- ELSE -->
+      <ng-template #buttonWithNotStock>
+        <ion-button class="customButtonAddCart" expand="full" color="danger" mode="md">
+          Agotado
+        </ion-button>
+      </ng-template>
+      <!-- End of validation -->
+    </div>
+  </ion-toolbar>
+</ion-footer>

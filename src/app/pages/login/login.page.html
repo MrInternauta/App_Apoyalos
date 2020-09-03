@@ -1,0 +1,25 @@
+<ion-content class="main-container">
+    <header class="header">
+        <div class="logo">
+            <a routerLink="/welcome">
+                <img src="assets/theme/images/welcome/appoyalos_logo_nuevo.png" alt="">
+            </a>
+            <h2 id="crea">Crea tu cuenta</h2><br>
+        </div>
+        <div class="curve">
+            <p>a</p>
+        </div>
+    </header>
+    <section class="form">
+        <form action="" method="POST" class="formulario">
+            <div class="formu">
+                <input [(ngModel)]="user" name="user" class="inputs" type="text" placeholder=" Nombre" required><br><br>
+                <input [(ngModel)]="pass" name="pass" class="inputs" type="password" placeholder="Contraseña" required><br><br>
+            </div>
+            <div class="but">
+                <input (click)="login(user, pass)" *ngIf="send === false" mode="md" type="submit" id="send" value="ENTRAR"><br>
+                <a href="#">¿Necesitas ayuda?</a>
+            </div>
+        </form>
+    </section>
+</ion-content>

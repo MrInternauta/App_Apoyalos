@@ -1,0 +1,48 @@
+<ion-content class="main-container">
+    <app-header mode="md"></app-header>
+    <br>
+    <div class="profile_img">
+        <ion-avatar (click)="changePic()" class="avatar" *ngIf="subirArchivo.linkPicture != ''">
+            <ion-img [src]="subirArchivo.getLinkPicture() | images: 'perfil'"></ion-img>
+        </ion-avatar>
+        <ion-avatar class="avatar" *ngIf="subirArchivo.linkPicture == ''">
+            <ion-img [src]="user.usuario.imagenurl | images: 'perfil'"></ion-img>
+        </ion-avatar>
+    </div>
+    <div class="user_info">
+        <div class="stars">
+
+        </div>
+        <div class="main_info">
+            <h2>{{ user.usuario.nombre }} {{user.usuario.apellidopat}}</h2>
+            <p id="city">Coatzacoalcos, Veracruz</p>
+            <p id="time_user">Usuario desde hace un mes</p>
+            <div class="customHR"></div>
+        </div>
+        <div class="message_aport">
+            <input id="send" type="button" value="Enviar mensaje"><br>
+            <p id="aporte"> Ha aportado</p>
+            <div class="aportes">
+                <div>
+                    Comidas
+                </div>
+                <div>
+                    Servicios
+                </div>
+                <div>
+                    Muebles
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="map">
+
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="primary" (click)="presentActionSheet()">
+            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
+<script src="https://use.fontawesome.com/be0b2f1599.js"></script>

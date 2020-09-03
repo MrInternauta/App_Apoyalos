@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.363);
+    font-weight: bolder;
+    width: 200px;
+    padding: 15px;
+    color: white;
+    border-radius: 15px;
+}
+
+ion-content.main-container {
+    --background: url(/assets/theme/images/welcome/fondoo.png)0 0/100% 100% no-repeat;
+    background-size: 100%;
+}
+
+.content {
+    margin-top: 160px;
+    display: grid;
+    grid-template-areas: 'logo logo logo logo logo'' buttons buttons buttons buttons buttons';
+    text-align: center;
+    row-gap: 25px;
+}
+
+.logo img {
+    max-width: 300px;
+    margin-bottom: 10px;
+}
+
+.logo {
+    grid-area: logo;
+    text-align: center;
+}
+
+.buttons {
+    grid-area: buttons;
+}
+
+#inici {
+    margin: 0;
+    color: white;
+    background-color: rgb(10, 133, 182);
+    border: none;
+    padding: 15px;
+    font-weight: bolder;
+    width: 300px;
+    border-radius: 10px 10px 0 0;
+    font-size: 20px;
+}
+
+#regis {
+    margin: 0;
+    background-color: rgb(0, 101, 141);
+    color: white;
+    border: none;
+    padding: 15px;
+    font-weight: bolder;
+    width: 300px;
+    border-radius: 0 0 10px 10px;
+    font-size: 20px;
+}

@@ -1,0 +1,90 @@
+<app-header mode="md"></app-header>
+
+<ion-content class="animated fadeIn">
+  <br>
+  <div class="container">
+    <div *ngIf="direccionService.dataArr; else directionEmpty">
+      <div *ngIf="direccionService.dataArr.length > 0; else directionEmpty">
+        <div *ngIf="!direccionService.data && direccionService.dataArr">
+          <ion-card class="animated fadeIn slow" *ngFor="let direccion of direccionService.dataArr">
+
+            <ion-item>
+              <ion-card-subtitle>
+                <ion-item>
+                  <strong>
+                    <h3 style="margin-left: 5px;"> {{direccion.descripcion}}</h3>
+                  </strong>
+                </ion-item>
+              </ion-card-subtitle>
+              <!-- option popover menu -->
+              <ion-buttons slot="end">
+                <ion-button (click)="presentPopover( direccion, $event )">
+                  <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-item>
+            <ion-card-content>
+              <div class="container">
+                <div class="row">
+                  <!-- Image of the product -->
+                  <div class="col">
+                    <agm-map class="customImage" [latitude]="direccion.latitud" [longitude]="direccion.longitud"
+                      [zoom]="14" [disableDefaultUI]="false" [zoomControl]="false">
+                      <agm-marker [latitude]="direccion.latitud" [longitude]="direccion.longitud">
+                        <agm-info-window>
+                          <strong>{{ direccionService.api.user.usuario.nombre }}
+                            {{ direccionService.api.user.usuario.apellidopat }}</strong>
+                        </agm-info-window>
+                      </agm-marker>
+                    </agm-map>
+                  </div>
+
+
+                  <div class="col" *ngIf="direccion">
+                    <strong>Dirección:</strong>
+                    <p *ngIf="direccion.numero">{{direccion.numero}},</p>
+                    <p *ngIf="direccion.calle">{{direccion.calle}},</p>
+                    <p *ngIf="direccion.colonia">{{direccion.colonia}},</p>
+                    <p *ngIf="direccion.municipio">{{direccion.municipio}},</p>
+                    <p *ngIf="direccion.entidadfed">
+                      {{direccion.entidadfed}}
+                    </p>
+
+                    <ion-badge *ngIf="direccion.default" color="success" padding-bottom="10">Predeterminada</ion-badge>
+
+                  </div>
+                </div>
+
+              </div>
+
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+
+    <!-- Div when the directions is empty -->
+    <ng-template #directionEmpty>
+      <div class="container">
+        <div class="empty">
+          <ion-icon style="width: 100px; height: 100px;" name="location-outline"></ion-icon>
+          <h1>Direcciones vacío.</h1>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- fab placed to the (vertical) center and end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" routerLink="/direccion">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<!-- Footer with tabs of the navigation-->
+<ion-footer mode="md">
+  <ion-toolbar>
+    <app-navegaciontabs></app-navegaciontabs>
+  </ion-toolbar>
+</ion-footer>

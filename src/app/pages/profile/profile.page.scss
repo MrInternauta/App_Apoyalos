@@ -1,0 +1,107 @@
+    * {
+        box-sizing: border-box;
+        font-family: 'Montserrat', sans-serif;
+        text-align: center;
+    }
+    
+    ion-content.main-container {
+        --background: url(/assets/theme/images/welcome/movil_background.png)0 0/100% 100% no-repeat;
+        background-size: 100%;
+        display: grid;
+        grid-template-areas: 'img img img img img img''use user user user user user' 'map map map map map map';
+    }
+    
+    .map {
+        grid-area: map;
+    }
+    
+    .user_info {
+        grid-area: user;
+        display: grid;
+        row-gap: 17px;
+        grid-template-areas: 'star  ' 'main  ' 'mess  ';
+    }
+    
+    .stars {
+        grid-area: star;
+    }
+    
+    .main-info {
+        grid-area: main;
+        padding: 10px;
+    }
+    
+    .message_aport {
+        grid-area: mess;
+    }
+    
+    .customHR {
+        border-bottom: 2.5px solid #ccc;
+        margin: auto;
+        max-width: 310px;
+    }
+    
+    .profile_img {
+        grid-area: img;
+    }
+    
+    .avatar {
+        border: 7px solid rgb(1, 124, 173);
+    }
+    
+    #city {
+        color: rgba(95, 95, 95, 0.726);
+        font-weight: 700;
+        font-size: 20px;
+        margin: 5px;
+    }
+    
+    .aportes {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .aportes div {
+        margin: auto;
+        text-align: center;
+        color: white;
+        font-size: 10px;
+        padding: 35px 20px;
+        border-radius: 100px;
+        max-width: 100px;
+        background-color: rgb(49, 184, 238);
+    }
+    
+    #aporte {
+        color: rgba(95, 95, 95, 0.726);
+        font-weight: 700;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    
+    #time_user {
+        font-size: 20px;
+        margin: 0 0 10px 0;
+    }
+    
+    #send {
+        background-color: rgb(1, 110, 153);
+        font-size: 24px;
+        font-weight: 500;
+        color: white;
+        padding: 6px 18px;
+        border: none;
+        border-radius: 25px;
+    }
+    
+    h2 {
+        color: rgb(1, 124, 173);
+        font-weight: 900;
+        font-size: 40px;
+    }
+    
+    ion-avatar {
+        width: 210px;
+        height: 210px;
+        margin: auto;
+    }

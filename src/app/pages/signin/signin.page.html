@@ -1,0 +1,39 @@
+<ion-content class="main-container">
+    <header class="header">
+        <div class="logo">
+            <a routerLink="/welcome">
+                <img src="assets/theme/images/welcome/appoyalos_logo_nuevo.png" alt="">
+            </a>
+            <h2 id="crea">Crea tu cuenta</h2><br>
+        </div>
+        <div class="curve">
+            <p>a</p>
+        </div>
+    </header>
+    <section class="form">
+        <form action="" method="POST" class="formulario">
+            <div class="formu">
+                <input class="inputs" placeholder="Nombre" type="text" required name="nombre" [(ngModel)]="nombre"><br><br>
+                <input class="inputs" placeholder="Apellido Paterno" type="text" required name="apellidopat" [(ngModel)]="apellidopat"><br><br>
+                <input class="inputs" placeholder="Apellido Materno" type="text" required name="apellidomat" [(ngModel)]="apellidomat"><br><br>
+                <input class="inputs" placeholder="Correo Electronico" type="email" required name="email" [(ngModel)]="email"><br><br>
+                <input class="inputs" placeholder=" Contraseña" type=password required name="pass" [(ngModel)]="pass"><br><br>
+                <input class="inputs" placeholder="Repita su contraseña" type="password" required name="pass2" [(ngModel)]="pass2"><br><br>
+                <input class="inputs" placeholder="Usuario" type="text" required name="usuario" [(ngModel)]="usuario"><br><br>
+                <input class="inputs" placeholder="Teléfono" type="tel" required name="telefono" [(ngModel)]="telefono"><br><br>
+                <input class="inputs" placeholder="Fecha de nacimiento" type="date" required name="fechanac" [(ngModel)]="fechanac"><br><br>
+                <ion-item class="customInputText">
+                    <ion-label style="white-space:normal !important;">Género</ion-label>
+                    <ion-select style="max-width: 100% !important;" placeholder="Seleciona uno" name="sexo" [(ngModel)]="sexo">
+                        <ion-select-option value="F">Femenino</ion-select-option>
+                        <ion-select-option value="M">Masculino</ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </div>
+            <div class="but">
+                <input (click)="registrar()" mode="md" type="submit" id="send" value="REGÍSTRATE"><br>
+                <a href="#">¿Necesitas ayuda?</a >
+            </div>
+        </form>
+    </section>
+</ion-content>

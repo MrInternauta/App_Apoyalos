@@ -1,0 +1,53 @@
+
+<!-- Si existe alguna direccion -->
+<ion-card class="animated fadeIn slow" *ngIf="direccionService.data && direccionService.dataArr == null && !direccion" >
+  <ion-card-subtitle>
+    <ion-item>
+        <h3>Ubicación</h3>
+    </ion-item>
+  </ion-card-subtitle>
+
+  <ion-card-content>
+    <div class="container">
+      <div class="row">
+        <div class="col" *ngIf="direccionService.data && !direccion">
+          <agm-map *ngIf="direccionService.data.direccion" [latitude]="direccionService.data.direccion.latitud"
+            [longitude]="direccionService.data.direccion.longitud" [zoom]="18" [disableDefaultUI]="false"
+            [zoomControl]="false">
+            <agm-marker *ngIf="direccionService.data" [latitude]="direccionService.data.direccion.latitud"
+              [longitude]="direccionService.data.direccion.longitud">
+              <agm-info-window>
+                <strong>{{ direccionService.api.user.usuario.nombre }}
+                  {{ direccionService.api.user.usuario.apellidopat }}</strong>
+              </agm-info-window>
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <br />
+
+  </ion-card-content>
+</ion-card>
+<!-- Si no existen direcciones, direccion en el servicio de direccions -->
+<div *ngIf="!direccionService.data && direccionService.dataArr.length < 1 && !direccion">
+  <div class="empty">
+    <ion-icon style="width: 100px; height: 100px;" name="location-outline"></ion-icon>
+    <h1>Direcciones vacío.</h1>
+  </div>
+</div>
+
+<!-- si se pasa una direccion por parametro viewchild  -->
+  <agm-map *ngIf="direccion" [latitude]="direccion.latitud"
+    [longitude]="direccion.longitud" [zoom]="18" [disableDefaultUI]="false"
+    [zoomControl]="false">
+    <agm-marker *ngIf="direccion" [latitude]="direccion.latitud"
+      [longitude]="direccion.longitud">
+      <agm-info-window>
+        <strong>{{ direccionService.api.user.usuario.nombre }}
+          {{ direccionService.api.user.usuario.apellidopat }}</strong>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>

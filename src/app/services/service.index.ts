@@ -1,0 +1,10 @@
+export { FavoritoService } from './favorito/favorito.service';
+export { ProductoService } from './producto/producto.service';
+export { DireccionService } from './direccion/direccion.service';
+export { ApiService } from './api.service';
+export { CategoriaService } from './categoria/categoria.service';
+export { SocketService } from './socket/socket.service';
+export { SubirarhivoService } from './subirarhivo/subirarhivo.service';
+export { LoginGuardGuard } from './guards/login-guard.guard';
+export { AdminGuardGuard } from './guards/admin-guard.guard';
+export { UsuarioService } from './usuario/usuario.service';
