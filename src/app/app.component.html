@@ -9,11 +9,8 @@
         <img src="../assets/theme/images/logo_with_r.png" id="homeIcon" width="50%" alt="">
       <!-- Profile image -->
       <div class="container" (click)="changePage('/profile')">
-        <ion-avatar class="customImageProfile" *ngIf="subir.linkPicture != ''">
-          <ion-img [src]="subir.getLinkPicture() | images: 'perfil'"></ion-img>
-        </ion-avatar>
-        <ion-avatar class="customImageProfile" *ngIf="subir.linkPicture == ''">
-          <ion-img [src]="user.usuario.imagenurl | images: 'perfil'" alt="" srcset=""></ion-img>
+        <ion-avatar class="customImageProfile" >
+          <ion-img [src]="user.usuario.imagenurl | images: 'usuario' | async" alt="" srcset=""></ion-img>
         </ion-avatar>
 
         <ion-button expand="full"  fill="outline">

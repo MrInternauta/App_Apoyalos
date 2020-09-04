@@ -2,11 +2,8 @@
     <app-header mode="md"></app-header>
     <br>
     <div class="profile_img">
-        <ion-avatar (click)="changePic()" class="avatar" *ngIf="subirArchivo.linkPicture != ''">
-            <ion-img [src]="subirArchivo.getLinkPicture() | images: 'perfil'"></ion-img>
-        </ion-avatar>
-        <ion-avatar class="avatar" *ngIf="subirArchivo.linkPicture == ''">
-            <ion-img [src]="user.usuario.imagenurl | images: 'perfil'"></ion-img>
+        <ion-avatar class="avatar">
+            <ion-img [src]="user.usuario.imagenurl | images: 'usuario' | async" alt="" srcset=""></ion-img>
         </ion-avatar>
     </div>
     <div class="user_info">

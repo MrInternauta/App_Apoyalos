@@ -341,4 +341,23 @@ export class ApiService {
     await this.alerVersionApp.present();
   }
 
+      /**
+   * @author Felipe De Jesus 
+   * @version 0.0.1
+   * @function GetImagen
+   * @description 
+   */
+  GetImagen(imageName: string, typeImg: string) {
+    const headers = new HttpHeaders({
+      token: this.user.token,
+    });
+    // tslint:disable-next-line:align
+    return this.http.get(environment.url + '/images/'+typeImg+'/'+imageName, { 
+      headers:{
+        'Content-Type':'image/png',
+        token: this.user.token
+      },
+      responseType: 'blob' })
+  }
+
 }

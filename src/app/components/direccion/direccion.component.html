@@ -13,7 +13,7 @@
         <div class="col" *ngIf="direccionService.data && !direccion">
           <agm-map *ngIf="direccionService.data.direccion" [latitude]="direccionService.data.direccion.latitud"
             [longitude]="direccionService.data.direccion.longitud" [zoom]="18" [disableDefaultUI]="false"
-            [zoomControl]="false">
+            zoomControl="false">
             <agm-marker *ngIf="direccionService.data" [latitude]="direccionService.data.direccion.latitud"
               [longitude]="direccionService.data.direccion.longitud">
               <agm-info-window>
@@ -42,7 +42,7 @@
 <!-- si se pasa una direccion por parametro viewchild  -->
   <agm-map *ngIf="direccion" [latitude]="direccion.latitud"
     [longitude]="direccion.longitud" [zoom]="18" [disableDefaultUI]="false"
-    [zoomControl]="false">
+    zoomControl="false">
     <agm-marker *ngIf="direccion" [latitude]="direccion.latitud"
       [longitude]="direccion.longitud">
       <agm-info-window>

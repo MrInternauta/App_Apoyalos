@@ -62,53 +62,8 @@ export class UsuarioService {
     return this.token.length > 5 ? true : false;
   }
 
-  /**
-   * @author Felipe De Jesus 
-   * @version 0.0.1
-   * @function guardarproductos
-   * @description guarda los productos del carrito del usuario en un local storage
-   */
-  guardarproductos() {
-    let productosCart = JSON.parse(localStorage.getItem('productosCart'));
-    let productosSession = JSON.parse(localStorage.getItem('productosSession'));
-    if (!productosSession) {
-      productosSession = [];
-    }
-    productosSession.push({
-      idUsuario: this.usuario.id,
-      productos: productosCart
-    });
-    localStorage.setItem('productosSession', JSON.stringify(productosSession));
-    localStorage.removeItem('productosCart');
-  }
 
-  /**
-   * @author Felipe De Jesus 
-   * @version 0.0.1
-   * @function obtenerproductos
-   * @description busca los productos del carrito del usuario
-   */
-  obtenerproductos() {
-    // obtener productos de los usuarios y lo setea a un arr
-    let productosSession = JSON.parse(localStorage.getItem('productosSession'));
-    // si no existen productos lo setea a una arreglo vacio
-    if (!productosSession) {
-      productosSession = [];
-    }
-    // busca los productos del usuario
-    let productosUsuario = productosSession.filter(productosUsuarItem => this.usuario.id == productosUsuarItem.idUsuario);
-    if (productosUsuario.length > 0) {
-      // setea los productos del usuario si existen
-      let productosactuales = productosUsuario[0];
 
-      localStorage.setItem('productosCart', JSON.stringify(productosactuales.productos == null ? [] : productosactuales.productos))
-      // borrar los productos del usuario actual de los productos por usuario
-      productosSession = productosSession.filter(productosUsuarItem => this.usuario.id != productosUsuarItem.idUsuario);
-      localStorage.setItem('productosSession', JSON.stringify(productosSession));
-
-    }
-
-  }
 
   /**
    * @author Felipe De Jesus 
@@ -117,7 +72,6 @@ export class UsuarioService {
    * @description permite cerrar sesion
    */
   Logout() {
-    this.guardarproductos();
     this.usuario = null;
     this.token = '';
     localStorage.removeItem('token');
@@ -145,7 +99,7 @@ export class UsuarioService {
         console.log(resp);
         
         this.GuardarStorage(
-          resp.data.usuario.id,
+          resp.data.usuario.idusuarios,
           resp.data.token,
           resp.data.usuario
         );
