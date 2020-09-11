@@ -1,5 +1,5 @@
 
-const url_base = 'http://localhost';
+const url_base = 'http://192.168.0.2';
 
 
 

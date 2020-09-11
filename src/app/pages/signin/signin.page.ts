@@ -32,13 +32,13 @@ export class SigninPage implements OnInit {
       nombre: !this.nombre ? '' : this.nombre,  // 32
       apellidopat: !this.apellidopat ? '' : this.apellidopat, // 32
       apellidomat: !this.apellidomat ? '' : this.apellidomat, // 32
-      correoele: !this.email ? '' : this.email, //128
+      correo: !this.email ? '' : this.email, //128
       contrasena: !this.pass ? '' : this.pass,
       pass2: !this.pass2 ? '' : this.pass2,
-      usuario: !this.usuario ? '' : this.usuario, // 16
+      curp: !this.usuario ? '' : this.usuario, // 16
       telefono: !this.telefono ? '' : this.telefono, // 10
       fechanac: !this.fechanac ? '' : this.fechanac,
-      sexo: !this.sexo ? '' : this.sexo,
+      genero: !this.sexo ? '' : this.sexo,
     };
     this.validarCampos(user);
     if (this.mensaje !== '') {
@@ -48,10 +48,10 @@ export class SigninPage implements OnInit {
       async (data) => {
         this.api.presentAlert(
           'Registro correcto',
-          'Usuario ' + user.usuario + ' registrado correctamente',
+          'Usuario: ' + user.curp + ' registrado correctamente',
           'Hemos enviado un correo electrónico de activación.'
         );
-        this.limpiarCampos();
+        this.clearInputs();
         await this.api.QuitarLoading();
         this.router.navigateByUrl('/login');
         console.log('Registro correcto', data);
@@ -71,12 +71,12 @@ export class SigninPage implements OnInit {
       await this.api.QuitarLoading();
       return this.api.presentToast(this.mensaje);
     }
-    if (!user.usuario) {
+    if (!user.curp) {
       this.mensaje += '\nFalta ingresar un usuario.';
       await this.api.QuitarLoading();
       return this.api.presentToast(this.mensaje);
     } else {
-      if (user.usuario.length > 16) {
+      if (user.curp.length > 16) {
         this.mensaje += '\nEl campo "Usuario" es muy grande.';
         await this.api.QuitarLoading();
         return this.api.presentToast(this.mensaje);
@@ -117,12 +117,12 @@ export class SigninPage implements OnInit {
       }
     }
 
-    if (!user.correoele) {
+    if (!user.correo) {
       this.mensaje += '\nFalta ingresar un email.';
       await this.api.QuitarLoading();
       return this.api.presentToast(this.mensaje);
     } else {
-      if (user.correoele.length > 128) {
+      if (user.correo.length > 128) {
         this.mensaje += '\nEl campo "Email" es muy grande.';
         await this.api.QuitarLoading();
         return this.api.presentToast(this.mensaje);
@@ -145,6 +145,17 @@ export class SigninPage implements OnInit {
       await this.api.QuitarLoading();
       return this.api.presentToast(this.mensaje);
     }
+    if (!user.telefono) {
+      this.mensaje += '\nFalta ingresar el telefono';
+      await this.api.QuitarLoading();
+      return this.api.presentToast(this.mensaje);
+    }else {
+      if (user.telefono.length != 10) {
+        this.mensaje += '\nEl telefono debe tener 10 digitos';
+        await this.api.QuitarLoading();
+        return this.api.presentToast(this.mensaje);
+      }
+    }
 
     if (this.mensaje !== '') {
       this.mensaje = this.mensaje;
@@ -153,16 +164,16 @@ export class SigninPage implements OnInit {
     }
   }
 
-  limpiarCampos() {
-    // this.nombre = '';
-    // this.apellidomat = '';
-    // this.apellidopat = '';
-    // this.email = '';
-    // this.pass = '';
-    // this.pass2 = '';
-    // this.usuario = '';
-    // this.telefono = '';
-    // this.fechanac = '';
-    // this.sexo = '';
+  clearInputs() {
+    this.nombre = '';
+    this.apellidomat = '';
+    this.apellidopat = '';
+    this.email = '';
+    this.pass = '';
+    this.pass2 = '';
+    this.usuario = '';
+    this.telefono = '';
+    this.fechanac = '';
+    this.sexo = '';
   }
 }
