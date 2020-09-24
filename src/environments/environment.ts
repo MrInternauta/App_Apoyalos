@@ -1,13 +1,13 @@
 
-const url_base = 'http://192.168.0.2';
+const url_base = 'http://192.168.0.5';
 
 
 
 
 export const environment = {
   production: false,
-  url: url_base + ':5000/api',
-  urlSockets: url_base + ':5000',
+  url: url_base + ':5001/api',
+  urlSockets: url_base + ':5001',
   urlWeb: url_base + '/appoyalos',
   apiKey: 'dsadsasdds',
   nameApp: 'Appóyalos',

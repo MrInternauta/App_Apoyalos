@@ -1,42 +1,13 @@
-<ion-content class="main-container">
+<ion-content class="main-container fondoAzul ion-no-padding">
     <app-header mode="md"></app-header>
     <div class="header">
         <div class="main">
             <h3>Te presentamos las</h3>
-            <strong><h2>formas de ayudar</h2></strong>
-
+            <strong>
+                <h2>formas de ayudar</h2>
+            </strong>
         </div>
-
     </div>
-    <div class="body">
-
-        <div class="alimentos fadeInLeft" (click)="select_categoria(1, 'Alimentos')">
-            <p>Alimentos</p>
-        </div>
-
-        <div class="mobiliario fadeInRight" (click)="select_categoria(2, 'Mobiliarios')">
-            <p>Mobiliarios</p>
-        </div>
-
-
-
-        <div class="electronicos fadeInLeft"(click)="select_categoria(3, 'Electrónicos')">
-            <p>Electrónicos</p>
-        </div>
-
-
-
-        <div class="ropa fadeInRight" (click)="select_categoria(4, 'Ropas')">
-            <p>Ropas</p>
-        </div>
-
-
-
-        <div class="otros fadeInUp" (click)="select_categoria(5, 'Otros')">
-            <p>Otros</p>
-        </div>
-
-
+    <div class="body" id="clasificaciones" [innerHtml]="data" >
     </div>
-
 </ion-content>

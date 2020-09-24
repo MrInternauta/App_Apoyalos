@@ -11,7 +11,7 @@ export class CategoriaService {
   pluralName: string = 'Categorias';
   // data from the request
   data: any;
-  constructor(private api: ApiService) {}
+  constructor(public api: ApiService) {}
 
   /**
    * @author Felipe De Jesus 
@@ -32,35 +32,43 @@ export class CategoriaService {
    * @returns {object} return a Object or  a false value
    */
   async getAll() {
-    await this.api.MostarLoading();
-    const url = '/' + this.tableName;
-    return await this.api.get(url).subscribe(
-      async (data: any) => {
-        if (data.data) {
-          if (data.data.length < 1) {
-            this.api.presentToast('No existen ' + this.pluralName);
+    let message = '';
+    return new Promise(async (resolve, reject)=> {
+      await this.api.MostarLoading();
+      const url = '/' + this.tableName;
+      return await this.api.get(url).subscribe(
+        async (data: any) => {
+ 
+          if (data.data) {
+            if (data.data.length < 1) {
+              message = 'No existen ' + this.pluralName;
+              this.api.presentToast(message);
+              reject(message)
+            } else {
+              this.data = data.data;
+              this.data.forEach(element => {
+                if (element.imagenurl == 'default.png') {
+                  element.imagenurl = 'default.png'
+                }
+              });
+              resolve(this.data);
+            }
           } else {
-            this.data = data.data;
-            this.data.forEach(element => {
-              if (element.imagenurl == 'default.jpg') {
-                element.imagenurl = 'default.png'
-              }
-            });
-            console.log(this.data);
-            
+            message = 'No existen ' + this.pluralName;
+            this.api.presentToast(message);
+            reject(message);
           }
-        } else {
-          this.api.presentToast('No existen ' + this.pluralName);
+          await this.api.QuitarLoading();
+        },
+        async (e) => {
+          if (e.status === 401) {
+            console.log('Obtenindo token');
+            this.api.user.updateToken();
+          }
+          await this.api.QuitarLoading();
+          reject(message);
         }
-        await this.api.QuitarLoading();
-      },
-      async (e) => {
-        if (e.status === 401) {
-          console.log('Obtenindo token');
-          this.api.user.updateToken();
-        }
-        await this.api.QuitarLoading();
-      }
-    );
+      );
+    })
   }
 }

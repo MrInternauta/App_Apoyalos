@@ -15,7 +15,6 @@ import { ComponentsModule } from './components/components.module';
 import { PipesModule } from './pipes/pipes.module';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AgmCoreModule } from '@agm/core';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
@@ -44,7 +43,6 @@ const config: SocketIoConfig = { url: environment.urlSockets, options: {} };
     StatusBar,
     SplashScreen,
     LocalNotifications,
-    ImagePicker,
     Camera,
     Geolocation,    
     NativeGeocoder,

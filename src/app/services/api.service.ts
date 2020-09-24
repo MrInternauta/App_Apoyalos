@@ -360,4 +360,24 @@ export class ApiService {
       responseType: 'blob' })
   }
 
+  getImage(img: string , tipo: string = 'usuario'){
+    return new Promise((resolve, reject) => {
+      // La peticion regresa una img y se pasa a una url temporal para poder ser usada
+      this.GetImagen(img, tipo).subscribe((value: any) => {
+        const reader = new FileReader();
+        const UrlImgTemp = reader.readAsDataURL(value);
+        reader.onloadend = () => {
+         let imagenTemp = reader.result;
+         resolve(imagenTemp)
+        };
+
+      }, (value) => {        
+        resolve('../assets/theme/images/no-image.jpg');
+      })
+    })
+
+  }
+
+
+
 }
