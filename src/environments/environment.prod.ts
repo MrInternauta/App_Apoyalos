@@ -1,9 +1,6 @@
 
 const url_base = 'http://192.168.0.5';
 
-
-
-
 export const environment = {
   production: true,
   url: url_base + ':5000/api',

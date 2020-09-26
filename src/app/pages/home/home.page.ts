@@ -14,7 +14,7 @@ export class HomePage implements OnInit {
   searchData: any[] = [];
   searchParam = '';
   data;
-  clases = ['items fadeInLeft', 'items fadeInRight', 'items fadeInLeft', 'items fadeInRight', 'items fadeInUp'];
+  clases = ['alimentos fadeInLeft', 'mobiliario fadeInRight', 'electronicos fadeInLeft', 'ropa fadeInRight', 'otros fadeInUp'];
   constructor
     (
       public categoriaS: CategoriaService,
@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
             idx = 0;
           }
           // 0 0/100% 100% no-repeat;
-          html += `<div class="${this.clases[idx]} categorias" (click)="select_categoria(${clasificacion.idcategorias},'${clasificacion.nombre}')" style="grid-area: Gri${index + 1}; background: url(${imgUrl})0 0/100% 100% no-repeat;"><p> ${clasificacion.nombre}</p> </div>`
+          html += `<div class="${this.clases[idx]} categorias" (click)="select_categoria(${clasificacion.idcategorias},'${clasificacion.nombre}')" style="grid-area: Gri${index + 1}; background: url(${imgUrl});"><p> ${clasificacion.nombre}</p> </div>`
           if (index == clasificaciones.length - 1) {      
             let catHtml = document.getElementById('clasificaciones');
             catHtml.innerHTML = html;

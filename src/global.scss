@@ -133,12 +133,7 @@ ion-content.main-container {
     padding: 0 10px;
     gap: 2%;
     display: grid;
-    // grid-template-areas: 'ali ali mobi mobi' 
-    //                      'ali ali mobi mobi'
-    //                      'ali ali ropa ropa'
-    //                      'elec elec ropa ropa'
-    //                      'elec elec ropa ropa'
-    //                      'otros otros otros otros';
+
 }
 
 .items {
@@ -148,6 +143,32 @@ ion-content.main-container {
     background-color: black;
 }
 
+
+.alimentos {
+    padding: 65px 35px;
+    background-size: cover;
+    background-size: 100%;
+}
+
+.mobiliario {
+    padding: 40px 40px;
+    background-color: black;
+}
+
+.electronicos {
+    background-color: black;
+    padding: 40px 40px;
+}
+
+.ropa {
+    background-color: black;
+    padding: 65px 50px;
+}
+
+.otros {
+    background-color: black;
+    padding: 30px 0;
+}
 
 .main h3 {
     color: white;
