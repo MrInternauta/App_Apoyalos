@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+ion-content.main-container {
+    --background: url(/assets/theme/images/welcome/movil_background.png)0 0/100% 100% no-repeat;
+    background-size: 100%;
+    display: grid;
+    grid-template-areas: 'img img img img img img''use user user user user user' 'map map map map map map';
+}
+
+
+
+.main-container {
+    display: grid;
+    grid-template-areas: 'head head head head head' 'form form form form form';
+}
+
+.logo {
+    grid-area: logo;
+    padding: 45px 30px 0 30px;
+}
+
+.logo img {
+    margin-bottom: 10px;
+}
+
+.curve {
+    grid-area: curve;
+    background: url(/assets/theme/images/welcome/curve.png)0 0/100% 100% no-repeat;
+    background-size: 100%;
+    width: 100%;
+    margin: auto;
+}
+
+p {
+    color: white;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    margin: auto;
+    background-color: rgb(0, 101, 141);
+    font-weight: bolder;
+    font-size: 22px;
+    width: 190px;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+}
+
+.logo img {
+    max-width: 190px;
+}
+
+.logo {
+    margin-bottom: 10px;
+}
+
+.form {
+    grid-area: form;
+    text-align: center;
+    display: grid;
+    padding: 20px;
+    height: auto;
+}
+
+.formulario {
+    display: grid;
+    grid-template-areas: 'formu formu formu formu formu' 'bot bot bot bot bot';
+    text-align: center;
+}
+
+.formu {
+    grid-area: formu;
+}
+
+.but {
+    grid-area: bot;
+    margin-top: 20px;
+}
+
+.inputs {
+    border: none;
+    padding: 7px;
+    font-size: 18px;
+    font-weight: bolder;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.13);
+    width: 100%;
+}
+
+a {
+    color: rgba(128, 128, 128, 0.651);
+}
+
+#send {
+    width: 200px;
+    border: none;
+    background-color: rgb(134, 212, 248);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+::placeholder {
+    color: rgba(128, 128, 128, 0.568);
+}
+
+.profile_img {
+    grid-area: img;
+}
+
+.avatar {
+    border: 7px solid rgb(1, 124, 173);
+}
+
+
+ion-avatar {
+    width: 210px;
+    height: 210px;
+    margin: auto;
+}

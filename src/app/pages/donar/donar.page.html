@@ -1,0 +1,35 @@
+<ion-content class="main-container">
+    <app-header mode="md"></app-header>
+    <div class="header">
+        <div class="main">
+            <h3>Te presentamos la</h3>
+            <strong>
+                <h2>formas de apoyar</h2>
+            </strong>
+        </div>
+    </div>
+    <br>
+    <br>
+    <section class="form">
+        <form action="" method="POST" class="formulario">
+            <div class="formu">
+                <input class="inputs" placeholder="Nombre " type="text" required name="nombre"
+                    [(ngModel)]="nombre"><br><br>
+                <input class="inputs" placeholder="Existencia" type="number" required name="existencia"
+                    [(ngModel)]="existencia"><br><br>
+                <ion-textarea class="inputs" placeholder="Ingresar más información" required name="descripcion"
+                    [(ngModel)]="descripcion"></ion-textarea>
+                    <br>
+                <ion-label style="white-space:normal !important;">Categoria</ion-label>
+                <ion-select style="max-width: 100% !important;" placeholder="Seleciona una" name="categoria"
+                    [(ngModel)]="categoria" *ngIf="categoriaS.data">
+                    <ion-select-option *ngFor="let categoria of categoriaS.data" value="{{categoria.idcategorias}}">
+                        {{categoria.nombre}}</ion-select-option>
+                </ion-select>
+            </div>
+            <div class="but">
+                <input (click)="registrar()" mode="md" type="submit" id="send" value="Apoyar"><br>
+            </div>
+        </form>
+    </section>
+</ion-content>

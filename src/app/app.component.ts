@@ -5,7 +5,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UsuarioService } from './services/usuario/usuario.service';
 import { NavController } from '@ionic/angular';
 import { ApiService } from './services/api.service';
-import { SocketService } from './services/socket/socket.service';
 import { SubirarhivoService } from './services/subirarhivo/subirarhivo.service';
 
 @Component({
@@ -20,15 +19,10 @@ export class AppComponent {
     url: '/home'
   },
   {
-    name: 'Favoritos',
+    name: 'Donar',
     icon: 'heart-outline',
-    url: '/favoritos'
+    url: '/donar'
   },
-  {
-    name: 'Mis direcciones',
-    icon: 'location-outline',
-    url: '/direcciones'
-  }
 
 ]  
   constructor(
@@ -38,7 +32,6 @@ export class AppComponent {
     public user: UsuarioService,
     private navController: NavController,
     private api: ApiService,
-    private socket: SocketService,
     private subir: SubirarhivoService,
   ) {
 
@@ -63,9 +56,7 @@ export class AppComponent {
 
   async inicializeServices() {
     if (this.user.EstaLogueado()) {
-      await this.socket.configUser();
       await this.subir.setLinkPicture(this.user.usuario.imagenurl);
-      await this.socket.listenPedido();
     }
   }
 

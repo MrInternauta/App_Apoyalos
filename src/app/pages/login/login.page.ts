@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
-import { SocketService } from '../../services/socket/socket.service';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +18,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
   constructor(public router: Router, 
               public loadingController: LoadingController,
-              private api: ApiService,
-              private socket: SocketService,
+              private api: ApiService
     ) { }
 
   ngOnDestroy(): void {
@@ -44,8 +42,6 @@ export class LoginPage implements OnInit, OnDestroy {
     console.log(user, pass);
     this.api.user.Login({ correo: String(user), contrasena: String(pass) }).subscribe(async (data) => 
     {
-      await this.socket.configUser();
-      await this.socket.listenPedido();
       this.router.navigateByUrl('/home');
       this.send = false;
       this.api.QuitarLoading();

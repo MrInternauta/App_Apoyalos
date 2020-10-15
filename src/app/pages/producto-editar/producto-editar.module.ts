@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { FavoritosPageRoutingModule } from './favoritos-routing.module';
+import { ProductoEditarPageRoutingModule } from './producto-editar-routing.module';
 
-import { FavoritosPage } from './favoritos.page';
+import { ProductoEditarPage } from './producto-editar.page';
 import { ComponentsModule } from '../../components/components.module';
 import { PipesModule } from '../../pipes/pipes.module';
 
@@ -15,10 +15,9 @@ import { PipesModule } from '../../pipes/pipes.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    ComponentsModule,
-    PipesModule,
-    FavoritosPageRoutingModule
+    ProductoEditarPageRoutingModule,
+    ComponentsModule, PipesModule
   ],
-  declarations: [FavoritosPage]
+  declarations: [ProductoEditarPage]
 })
-export class FavoritosPageModule {}
+export class ProductoEditarPageModule {}

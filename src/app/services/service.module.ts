@@ -6,12 +6,9 @@ import {
           UsuarioService,
           LoginGuardGuard,
           SubirarhivoService,
-          AdminGuardGuard,
           CategoriaService,
           ApiService,
-          DireccionService,
           ProductoService,
-          FavoritoService,
           
           } from './service.index';
 @NgModule({
@@ -25,12 +22,9 @@ import {
           UsuarioService,
           LoginGuardGuard,
           SubirarhivoService,
-          AdminGuardGuard,
           CategoriaService,
-          DireccionService,
           ApiService,
           ProductoService,
-          FavoritoService,
         ]
 })
 export class ServiceModule { }

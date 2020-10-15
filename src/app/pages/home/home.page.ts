@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { CategoriaService } from 'src/app/services/service.index';
-import { SocketService } from '../../services/socket/socket.service';
 import { Socket } from 'ngx-socket-io';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
@@ -18,13 +17,13 @@ export class HomePage implements OnInit {
   constructor
     (
       public categoriaS: CategoriaService,
-      private router: Router,
-      private socket: SocketService,
+      private router: Router
   ) {
   }
   ngOnInit(): void {
     this.getCategories();
   }
+  
   /**
    * @author Felipe De Jesus 
    * @version 0.0.1
@@ -59,7 +58,11 @@ export class HomePage implements OnInit {
             idx = 0;
           }
           // 0 0/100% 100% no-repeat;
-          html += `<div class="${this.clases[idx]} categorias" (click)="select_categoria(${clasificacion.idcategorias},'${clasificacion.nombre}')" style="grid-area: Gri${index + 1}; background: url(${imgUrl});"><p> ${clasificacion.nombre}</p> </div>`
+          html += `<div class="${this.clases[idx]} categorias" id="${clasificacion.idcategorias}"
+          style="grid-area: Gri${index + 1}; background: url(${imgUrl});">
+          <p> ${clasificacion.nombre}</p> 
+          </div>`;
+
           if (index == clasificaciones.length - 1) {      
             let catHtml = document.getElementById('clasificaciones');
             catHtml.innerHTML = html;
@@ -92,6 +95,7 @@ export class HomePage implements OnInit {
             body.setAttribute('style', `
             grid-template-areas: ${grids}
             `)
+            this.listenClick();
             //En la primera poner del 1 al 5
             //Apartir de la segunda vuelta poner del el num * 5 
 
@@ -116,12 +120,25 @@ export class HomePage implements OnInit {
    * @param {any} categoria Category selected by the user
    * @returns {void} 
    */
-  select_categoria(id, nombre = ''): void {
-    console.log('Holaa');
-
-    let categoria = { id, nombre }
+  select_categoria(id, nombre = '') {
+    let categoria = { id, nombre };
     let navigationExtras: NavigationExtras = { state: { categoria } };
     this.router.navigate(['/productos/' + categoria.id], navigationExtras);
+  }
+
+  listenClick(){
+    let divsClick = document.getElementsByClassName('categorias')
+    for (let index = 0; index < divsClick.length; index++) {
+      const element: Element = divsClick[index];
+      element.addEventListener('click',  ()=> {    
+        console.log(element.children[0].textContent);
+        let id =  element.getAttribute('id');
+        let nombre  = element.children[0].textContent ? element.children[0].textContent : 'Categoria';
+        this.select_categoria(id, nombre)
+      })
+      
+      
+    }
   }
 
 }

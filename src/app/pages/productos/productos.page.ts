@@ -54,6 +54,7 @@ export class ProductosPage implements OnInit {
       this.ruter.queryParams.subscribe(params => {
         if (this.router.getCurrentNavigation().extras.state) {
           this.categoria = this.router.getCurrentNavigation().extras.state.categoria;
+          console.log(this.categoria);
         }
       });
     } else {
@@ -84,8 +85,8 @@ export class ProductosPage implements OnInit {
    * @returns {void} 
    */
   selecccionar_producto(producto: any): void {
-    this.router.navigate(['/producto/' + producto.id]);
-    this.api.MostarLoading();
+    console.log(producto);
+    
   }
 
 }

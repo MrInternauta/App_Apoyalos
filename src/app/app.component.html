@@ -1,8 +1,6 @@
 <ion-app>
-
   <!-- Element of the tabs for navigation -->
   <ion-router-outlet></ion-router-outlet>
-
   <ion-menu side="start" menuId="first" contentId="main" *ngIf="user.EstaLogueado()" auto-hide="true" >
     <ion-menu-toggle autoHide="true">
     <ion-header class="animated fadeIn" class="ion-no-border" class="ion-text-center" >
@@ -12,14 +10,11 @@
         <ion-avatar class="customImageProfile" >
           <ion-img [src]="user.usuario.imagenurl | images: 'usuario' | async" alt="" srcset=""></ion-img>
         </ion-avatar>
-
         <ion-button expand="full"  fill="outline">
           <ion-icon color="light" class="icon-stars" name="star"></ion-icon>
           <ion-icon color="light" class="icon-stars" name="star" ></ion-icon>
           <ion-icon color="light" class="icon-stars" name="star"></ion-icon>
-
         </ion-button>
-
         <!-- username -->
         <div class="customUserName">
           <ion-label>
@@ -27,10 +22,8 @@
               </strong></h1>
           </ion-label>
           <div class="customHR"></div>
-
         </div>
       </div>
-
     </ion-header>
     <ion-content color="primary" > 
       <ion-list class="animated fadeIn">
